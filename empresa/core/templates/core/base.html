@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	{% load static %}
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title %}	{% endblock %}</title>
+	<link rel="shortcut icon" href="{% static 'core/img/la-sabrosa-img.ico' %}" />
+
+	<link rel="stylesheet" href="{% static 'core/css/bootstrap.min.css' %}">
+	<link
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i,900,900i&display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Ranga:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'core/css/fontello.css' %}">
+	<link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
+
+
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<!--Menu de Navegacion Dashbort-->
+			<div class="barra-lateral col-12 col-sm-auto">
+				<div class="logo">
+					<h2>La Sabrosa</h2>
+				</div>
+				<div class="menu d-flex d-sm-block justify-content-center flex-wrap">
+					<a href="{% url 'home' %}">
+						<i class="icon-home"></i>
+						<span>Inicio</span>
+					</a>
+					<a href="{% url 'services' %}">
+						<i class="icon-coffee"></i>
+						<span>Servicio</span>
+					</a>
+					<a href="{% url 'visit' %}">
+						<i class="icon-cab"></i>
+						<span>Visitanos</span>
+					</a>
+					<a href="{% url 'contact' %}">
+						<i class="icon-phone"></i>
+						<span>Contacto</span>
+					</a>
+					<a href="{% url 'blog' %}">
+						<i class="icon-blogger"></i>
+						<span>Blog</span>
+					</a>
+					<a href="{% url 'history' %}">
+						<i class="icon-history"></i>
+						<span>Historia</span>
+					</a>
+				</div>
+			</div>
+			<!-- Contenido -->
+			<main class="main col">
+				<!--Titulo de la Marca -->
+				<div class="row marca">
+					<div class="titulos col-12">
+						<h3>La Autentica Comida Tradicional</h3>
+						<h2> La Sabrosa</h2>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<!--Contenido-->
+						{% block content%}
+						{% endblock %}
+					</div>
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<!-- Pié de página -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row footer-icon justify-content-center">
+				<p class="col-auto">
+					<a href="#" class="icono">
+						<i class="icon-twitter"></i>
+					</a>
+					<a href="#" class="icono">
+						<i class="icon-facebook"></i>
+					</a>
+					<a href="#" class="icono">
+						<i class="icon-instagram"></i>
+					</a>
+				</p>
+				<p class="col-auto link">
+					{% load pages_extras %} <!-- Se carga el template tag -->
+					{% get_pages as pages%} <!-- La funcion se la pasa a variable -->
+					{% for page in pages %} <!-- Se inicia un for para recorrer los objetos-->
+					<a href="{% url 'other' page.id %}" class="link">{{ page.title }}</a> {% if not forloop.last %} - {% endif %}
+					{% endfor %}
+				</p>
+				<p class="col-auto copy">copyright &copy; La Sabrosa 2022</p>
+			</div>
+
+		</div>
+	</footer>
+
+	<script src="{% static 'core/js/jquery-3.4.1.min.js' %}"></script>
+	<script src="{% static 'core/js/popper.min.js' %}"></script>
+	<script src="{% static 'core/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'core/js/scripts.js' %}"></script>
+</body>
+
+</html>

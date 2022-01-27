@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %} 
+{% load static %}
+{% block title %}Servicio{% endblock %}
+{% block content%}
+{% for service in services %}
+
+<div class="contenido-service">
+  <div class="card text-center">
+    <div class="card-header">
+      <h4>{{ service.subtitle }}</h4>
+      <h3>{{ service.title }}</h3>
+    </div>
+    <img
+      src="{{ service.image.url }}"
+      class="card-img-top"
+      alt="..."
+    />
+    <div class="card-body">
+      <p class="card-text">{{ service.content }}</p>
+    </div>
+    <div class="card-footer">
+      <h6>Publicado: {{ service.published | date:"SHORT_DATE_FORMAT"}}</h6> <!-- A través de una pipe se le pasa el formato que debe de tener la fecha -->
+    </div>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock%}
